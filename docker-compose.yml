@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  mysqldb:
+    container_name: mysqldb
+    build:
+      context: database/mysql
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - backend
+
+  mongodb:
+    container_name: mongodb
+    build:
+      context: database/mongodb
+      dockerfile: Dockerfile
+    ports:
+      - 27017:27017
+    restart: always
+    networks:
+      - backend
+
+networks:
+  backend:
