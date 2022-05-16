@@ -11,7 +11,13 @@ public class SchedulerService extends SchedulerServiceGrpc.SchedulerServiceImplB
     @Override
     public void scheduleDelivery(CreateDeliveryRequest request,
             io.grpc.stub.StreamObserver<CreateDeliveryResponse> responseObserver) {
-        // TODO: Implement
+        // TODO: Implement schedule delivery logic
+
+        CreateDeliveryResponse response = CreateDeliveryResponse.newBuilder().setDelivery("12345").build();
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+
     }
 
 }

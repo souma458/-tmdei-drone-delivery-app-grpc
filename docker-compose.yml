@@ -1,6 +1,23 @@
 version: "3.8"
 
 services:
+  scheduler:
+    container_name: scheduler
+    build:
+      context: scheduler-service
+      dockerfile: Dockerfile
+    ports:
+      - "${SCHEDULER_SERVICE_PORT}:${INTERNAL_PORT}"
+    restart: always
+    environment:
+      USER-SERVICE_URL: $USER_SERVICE_URL
+      DELIVERY-SERVICE_URL: $DELIVERY_SERVICE_URL
+      PACKAGE-SERVICE_URL: $PACKAGE_SERVICE_URL
+      DRONE-SERVICE_URL: $DRONE_SERVICE_URL
+      THIRD-PARTY-TRANSPORTATION-SERVICE_URL: $THIRD_PARTY_TRANSPORTATION_SERVICE_URL
+    networks:
+      - backend
+
   mysqldb:
     container_name: mysqldb
     build:
