@@ -13,11 +13,11 @@ start-with-logs: teardown
 teardown:
 	@docker-compose down
 	@-docker rmi \
-	tmdei-drone-delivery-app-rest_scheduler \
-	tmdei-drone-delivery-app-rest_user-management \
-	tmdei-drone-delivery-app-rest_drone-management \
-	tmdei-drone-delivery-app-rest_third-party-transportation-management \
-	tmdei-drone-delivery-app-rest_delivery-management \
-	tmdei-drone-delivery-app-rest_package-management \
-	tmdei-drone-delivery-app-rest_mysqldb \
-	tmdei-drone-delivery-app-rest_mongodb
+	tmdei-drone-delivery-app-grpc_scheduler \
+	tmdei-drone-delivery-app-grpc_user-management \
+	tmdei-drone-delivery-app-grpc_drone-management \
+	tmdei-drone-delivery-app-grpc_third-party-transportation-management \
+	tmdei-drone-delivery-app-grpc_delivery-management \
+	tmdei-drone-delivery-app-grpc_package-management \
+	tmdei-drone-delivery-app-grpc_mysqldb \
+	tmdei-drone-delivery-app-grpc_mongodb
