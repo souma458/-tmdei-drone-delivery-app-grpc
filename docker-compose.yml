@@ -18,6 +18,23 @@ services:
     networks:
       - backend
 
+  delivery-management:
+    container_name: delivery-management
+    build:
+      context: delivery-management
+      dockerfile: Dockerfile
+    ports:
+      - "${DELIVERY_SERVICE_PORT}:${INTERNAL_PORT}"
+    restart: always
+    depends_on:
+      - mongodb
+    environment:
+      HOST: delivery-management
+      PORT: ${INTERNAL_PORT}
+      MONGODB_URI: mongodb://mongodb/delivery_db
+    networks:
+      - backend
+
   mysqldb:
     container_name: mysqldb
     build:
