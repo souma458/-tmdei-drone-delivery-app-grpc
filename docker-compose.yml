@@ -35,6 +35,23 @@ services:
     networks:
       - backend
 
+  third-party-transportation-management:
+    container_name: third-party-transportation-management
+    build:
+      context: third-party-transportation-service
+      dockerfile: Dockerfile
+    ports:
+      - "${THIRD_PARTY_TRANSPORTATION_SERVICE_PORT}:${INTERNAL_PORT}"
+    restart: always
+    depends_on:
+      - mongodb
+    environment:
+      HOST: third-party-transportation-management
+      PORT: ${INTERNAL_PORT}
+      MONGODB_URI: mongodb://mongodb/third_party_transportation_db
+    networks:
+      - backend
+
   mysqldb:
     container_name: mysqldb
     build:
