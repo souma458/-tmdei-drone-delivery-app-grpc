@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+message CreatePackageRequest {
+  int32 weight = 1;
+  int32 height = 2;
+  int32 width = 3;
+  string delivery = 4;
+}
+
+message CreatePackageResponse {
+  string packageId = 1;
+}
+
+service PackageService {
+  rpc createPackage(CreatePackageRequest) returns (CreatePackageResponse);
+}

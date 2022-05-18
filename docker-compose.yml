@@ -52,6 +52,23 @@ services:
     networks:
       - backend
 
+  package-management:
+    container_name: package-management
+    build:
+      context: package-management
+      dockerfile: Dockerfile
+    ports:
+      - "${PACKAGE_SERVICE_PORT}:${INTERNAL_PORT}"
+    restart: always
+    depends_on:
+      - mongodb
+    environment:
+      HOST: package-management
+      PORT: ${INTERNAL_PORT}
+      MONGODB_URI: mongodb://mongodb/package_db
+    networks:
+      - backend
+
   mysqldb:
     container_name: mysqldb
     build:
