@@ -69,6 +69,23 @@ services:
     networks:
       - backend
 
+  drone-management:
+    container_name: drone-management
+    build:
+      context: drone-management
+      dockerfile: Dockerfile
+    ports:
+      - "${DRONE_SERVICE_PORT}:${INTERNAL_PORT}"
+    restart: always
+    depends_on:
+      - mysqldb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/drone_db
+      SPRING_DATASOURCE_USERNAME: $DRONE_DB_USERNAME
+      SPRING_DATASOURCE_PASSWORD: $DRONE_DB_PASSWORD
+    networks:
+      - backend
+
   mysqldb:
     container_name: mysqldb
     build:
