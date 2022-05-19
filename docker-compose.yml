@@ -86,6 +86,23 @@ services:
     networks:
       - backend
 
+  user-management:
+    container_name: user-management
+    build:
+      context: user-management
+      dockerfile: Dockerfile
+    ports:
+      - "${USER_SERVICE_PORT}:${INTERNAL_PORT}"
+    restart: always
+    depends_on:
+      - mysqldb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/user_db
+      SPRING_DATASOURCE_USERNAME: $USER_ACCOUNT_DB_USERNAME
+      SPRING_DATASOURCE_PASSWORD: $USER_ACCOUNT_DB_PASSWORD
+    networks:
+      - backend
+
   mysqldb:
     container_name: mysqldb
     build:
