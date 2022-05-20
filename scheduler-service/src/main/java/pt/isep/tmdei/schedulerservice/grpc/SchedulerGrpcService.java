@@ -1,23 +1,23 @@
 package pt.isep.tmdei.schedulerservice.grpc;
 
+import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
 import pt.isep.tmdei.schedulerservice.CreateDeliveryRequest;
 import pt.isep.tmdei.schedulerservice.CreateDeliveryResponse;
 import pt.isep.tmdei.schedulerservice.SchedulerServiceGrpc;
+import pt.isep.tmdei.schedulerservice.service.SchedulerService;
 
 @GrpcService
-public class SchedulerService extends SchedulerServiceGrpc.SchedulerServiceImplBase {
+@RequiredArgsConstructor
+public class SchedulerGrpcService extends SchedulerServiceGrpc.SchedulerServiceImplBase {
+
+    private final SchedulerService schedulerService;
 
     @Override
     public void scheduleDelivery(CreateDeliveryRequest request,
             io.grpc.stub.StreamObserver<CreateDeliveryResponse> responseObserver) {
-        // TODO: Implement schedule delivery logic
-
-        CreateDeliveryResponse response = CreateDeliveryResponse.newBuilder().setDelivery("12345").build();
-
-        responseObserver.onNext(response);
+        responseObserver.onNext(schedulerService.scheduleDelivery(request));
         responseObserver.onCompleted();
-
     }
 
 }

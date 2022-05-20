@@ -17,5 +17,7 @@ export default ({ server, grpc }) => {
 
   server.addService(deliveryServiceProto.DeliveryService.service, {
     createDelivery: controller.createDelivery,
+    updateDeliveryStatus: controller.updateDeliveryStatus,
+    updateDeliveryDrone: controller.updateDeliveryDrone,
   });
 };
