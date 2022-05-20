@@ -3,7 +3,7 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = true;
-option java_package = "pt.isep.tmdei.dronemanagement";
+option java_package = "pt.isep.tmdei.deliverymanagement";
 
 message CreateDeliveryRequest {
   string username = 1;
@@ -23,10 +23,26 @@ message CreateDeliveryResponse {
   google.protobuf.Timestamp created = 7;
   string status = 8;
   bool expedited = 9;
-  optional string drone = 10;
-  optional string transportationRequest = 11;
+}
+
+message UpdateDeliveryStatusRequest {
+  string delivery = 1;
+  string status = 2;
+}
+
+message UpdateDeliveryStatusResponse {
+}
+
+message UpdateDeliveryDroneRequest {
+  string delivery = 1;
+  int64 drone = 2;
+}
+
+message UpdateDeliveryDroneResponse {
 }
 
 service DeliveryService {
   rpc createDelivery(CreateDeliveryRequest) returns (CreateDeliveryResponse);
+  rpc updateDeliveryStatus(UpdateDeliveryStatusRequest) returns (UpdateDeliveryStatusResponse);
+  rpc updateDeliveryDrone(UpdateDeliveryDroneRequest) returns (UpdateDeliveryDroneResponse);
 }

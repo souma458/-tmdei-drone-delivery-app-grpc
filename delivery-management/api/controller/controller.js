@@ -12,4 +12,26 @@ export class DeliveryController {
       handleError(callback, err);
     }
   }
+
+  async updateDeliveryStatus(call, callback) {
+    try {
+      await service.partiallyUpdateDelivery(call.request.delivery, {
+        status: call.request.status,
+      });
+      callback(null, null);
+    } catch (err) {
+      handleError(callback, err);
+    }
+  }
+
+  async updateDeliveryDrone(call, callback) {
+    try {
+      await service.partiallyUpdateDelivery(call.request.delivery, {
+        drone: call.request.drone,
+      });
+      callback(null, null);
+    } catch (err) {
+      handleError(callback, err);
+    }
+  }
 }

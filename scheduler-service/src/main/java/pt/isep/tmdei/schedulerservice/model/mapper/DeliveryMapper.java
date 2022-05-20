@@ -2,7 +2,7 @@ package pt.isep.tmdei.schedulerservice.model.mapper;
 
 import org.springframework.stereotype.Component;
 
-import pt.isep.tmdei.dronemanagement.CreateDeliveryRequest;
+import pt.isep.tmdei.deliverymanagement.CreateDeliveryRequest;
 
 @Component
 public class DeliveryMapper {

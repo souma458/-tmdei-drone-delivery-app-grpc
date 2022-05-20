@@ -1,16 +1,15 @@
 package pt.isep.tmdei.usermanagement.grpc;
 
-import javax.security.auth.login.AccountNotFoundException;
-
 import io.grpc.Status;
 import net.devh.boot.grpc.server.advice.GrpcAdvice;
 import net.devh.boot.grpc.server.advice.GrpcExceptionHandler;
+import pt.isep.tmdei.usermanagement.service.exception.AccountNotFoundException;
 
 @GrpcAdvice
 public class ServiceExceptionHandler {
 
-    @GrpcExceptionHandler
-    public Status accountNotFoundException(AccountNotFoundException ex) {
+    @GrpcExceptionHandler(AccountNotFoundException.class)
+    public Status accountNotFoundException(RuntimeException ex) {
         return Status.NOT_FOUND.withDescription(ex.getMessage());
     }
 
