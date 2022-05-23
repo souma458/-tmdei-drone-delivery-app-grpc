@@ -41,7 +41,16 @@ message PickupPackageResponse {
   string status = 6;
 }
 
+message CompleteDeliveryRequest {
+  string delivery = 1;
+}
+
+message CompleteDeliveryResponse {
+  // empty
+}
+
 service SchedulerService {
   rpc scheduleDelivery(CreateDeliveryRequest) returns (CreateDeliveryResponse);
   rpc pickupPackage(PickupPackageRequest) returns (PickupPackageResponse);
+  rpc completeDelivery(CompleteDeliveryRequest) returns (CompleteDeliveryResponse);
 }

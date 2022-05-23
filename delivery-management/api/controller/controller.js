@@ -43,4 +43,22 @@ export class DeliveryController {
       handleError(callback, err);
     }
   }
+
+  async completeDelivery(call, callback) {
+    try {
+      await service.completeDelivery(call.request.delivery);
+      callback(null, null);
+    } catch (err) {
+      handleError(callback, err);
+    }
+  }
+
+  async getDelivery(call, callback) {
+    try {
+      const delivery = await service.get(call.request.delivery);
+      callback(null, delivery);
+    } catch (err) {
+      handleError(callback, err);
+    }
+  }
 }

@@ -6,6 +6,8 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 import pt.isep.tmdei.dronemanagement.BookDroneRequest;
 import pt.isep.tmdei.dronemanagement.BookDroneResponse;
 import pt.isep.tmdei.dronemanagement.DroneServiceGrpc;
+import pt.isep.tmdei.dronemanagement.IdleDroneRequest;
+import pt.isep.tmdei.dronemanagement.IdleDroneResponse;
 import pt.isep.tmdei.schedulerservice.client.DroneServiceClient;
 
 @Component
@@ -17,6 +19,11 @@ public class DroneServiceClientImpl implements DroneServiceClient {
     @Override
     public BookDroneResponse bookDrone(BookDroneRequest request) {
         return droneManagementStub.bookDrone(request);
+    }
+
+    @Override
+    public IdleDroneResponse idleDrone(IdleDroneRequest request) {
+        return droneManagementStub.idleDrone(request);
     }
 
 }

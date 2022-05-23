@@ -4,9 +4,13 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.client.inject.GrpcClient;
+import pt.isep.tmdei.deliverymanagement.CompleteDeliveryRequest;
+import pt.isep.tmdei.deliverymanagement.CompleteDeliveryResponse;
 import pt.isep.tmdei.deliverymanagement.CreateDeliveryRequest;
 import pt.isep.tmdei.deliverymanagement.CreateDeliveryResponse;
 import pt.isep.tmdei.deliverymanagement.DeliveryServiceGrpc;
+import pt.isep.tmdei.deliverymanagement.GetDeliveryRequest;
+import pt.isep.tmdei.deliverymanagement.GetDeliveryResponse;
 import pt.isep.tmdei.deliverymanagement.PickupPackageRequest;
 import pt.isep.tmdei.deliverymanagement.PickupPackageResponse;
 import pt.isep.tmdei.deliverymanagement.UpdateDeliveryDroneRequest;
@@ -40,6 +44,16 @@ public class DeliveryServiceClientImpl implements DeliveryServiceClient {
     @Override
     public PickupPackageResponse pickupPackage(PickupPackageRequest request) {
         return deliveryManagementStub.pickupPackage(request);
+    }
+
+    @Override
+    public CompleteDeliveryResponse completeDelivery(CompleteDeliveryRequest request) {
+        return deliveryManagementStub.completeDelivery(request);
+    }
+
+    @Override
+    public GetDeliveryResponse getDelivery(GetDeliveryRequest request) {
+        return deliveryManagementStub.getDelivery(request);
     }
 
 }

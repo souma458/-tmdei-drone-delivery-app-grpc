@@ -12,7 +12,7 @@ export class DeliveryResponseDTO {
     this.status = delivery.status;
     this.expedited = delivery.expedited;
     this.drone = delivery.drone ? delivery.drone : null;
-    this.transportationRequest = delivery.transportationRequest
+    this.transportation_request = delivery.transportationRequest
       ? delivery.transportationRequest
       : null;
   }

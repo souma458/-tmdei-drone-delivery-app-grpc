@@ -20,5 +20,7 @@ export default ({ server, grpc }) => {
     updateDeliveryStatus: controller.updateDeliveryStatus,
     updateDeliveryDrone: controller.updateDeliveryDrone,
     pickupPackage: controller.pickupPackage,
+    completeDelivery: controller.completeDelivery,
+    getDelivery: controller.getDelivery,
   });
 };

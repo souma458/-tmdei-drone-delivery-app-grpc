@@ -1,7 +1,11 @@
 package pt.isep.tmdei.schedulerservice.client;
 
+import pt.isep.tmdei.deliverymanagement.CompleteDeliveryRequest;
+import pt.isep.tmdei.deliverymanagement.CompleteDeliveryResponse;
 import pt.isep.tmdei.deliverymanagement.CreateDeliveryRequest;
 import pt.isep.tmdei.deliverymanagement.CreateDeliveryResponse;
+import pt.isep.tmdei.deliverymanagement.GetDeliveryRequest;
+import pt.isep.tmdei.deliverymanagement.GetDeliveryResponse;
 import pt.isep.tmdei.deliverymanagement.PickupPackageRequest;
 import pt.isep.tmdei.deliverymanagement.PickupPackageResponse;
 import pt.isep.tmdei.deliverymanagement.UpdateDeliveryDroneRequest;
@@ -18,5 +22,9 @@ public interface DeliveryServiceClient {
     UpdateDeliveryDroneResponse updateDeliveryDrone(UpdateDeliveryDroneRequest request);
 
     PickupPackageResponse pickupPackage(PickupPackageRequest request);
+
+    CompleteDeliveryResponse completeDelivery(CompleteDeliveryRequest request);
+
+    GetDeliveryResponse getDelivery(GetDeliveryRequest setDelivery);
 
 }
