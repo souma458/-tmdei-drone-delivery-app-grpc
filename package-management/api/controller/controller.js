@@ -13,4 +13,16 @@ export class PackageController {
       handleError(callback, err);
     }
   }
+
+  async createTagForPackage(call, callback) {
+    try {
+      const createdTag = await service.createTagForPackage(
+        call.request.package_id,
+        { tag: call.request.tag }
+      );
+      callback(null, { tag_id: createdTag._id, tag: createdTag.tag });
+    } catch (err) {
+      handleError(callback, err);
+    }
+  }
 }

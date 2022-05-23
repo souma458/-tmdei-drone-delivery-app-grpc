@@ -13,9 +13,20 @@ message CreatePackageRequest {
 }
 
 message CreatePackageResponse {
-  string packageId = 1;
+  string package_id = 1;
+}
+
+message CreateTagForPackageRequest {
+  string package_id = 1;
+  string tag = 2;
+}
+
+message CreateTagForPackageResponse {
+  string tag_id = 1;
+  string tag = 2;
 }
 
 service PackageService {
   rpc createPackage(CreatePackageRequest) returns (CreatePackageResponse);
+  rpc createTagForPackage(CreateTagForPackageRequest) returns (CreateTagForPackageResponse);
 }

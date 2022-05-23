@@ -17,5 +17,6 @@ export default ({ server, grpc }) => {
 
   server.addService(packageService.PackageService.service, {
     createPackage: controller.createPackage,
+    createTagForPackage: controller.createTagForPackage,
   });
 };
