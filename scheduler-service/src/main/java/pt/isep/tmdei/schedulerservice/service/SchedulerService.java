@@ -8,9 +8,12 @@ import lombok.RequiredArgsConstructor;
 import pt.isep.tmdei.packagemanagement.CreatePackageRequest;
 import pt.isep.tmdei.schedulerservice.CreateDeliveryRequest;
 import pt.isep.tmdei.schedulerservice.CreateDeliveryResponse;
+import pt.isep.tmdei.schedulerservice.PickupPackageRequest;
+import pt.isep.tmdei.schedulerservice.PickupPackageResponse;
 import pt.isep.tmdei.schedulerservice.client.DeliveryServiceClient;
 import pt.isep.tmdei.schedulerservice.client.PackageServiceClient;
 import pt.isep.tmdei.schedulerservice.client.UserServiceClient;
+import pt.isep.tmdei.schedulerservice.model.mapper.DeliveryMapper;
 import pt.isep.tmdei.usermanagement.GetAccountRequest;
 
 @Service
@@ -22,10 +25,13 @@ public class SchedulerService {
     private final PackageServiceClient packageServiceClient;
     private final TransportationService transportationService;
 
+    private final DeliveryMapper deliveryMapper;
+
     public CreateDeliveryResponse scheduleDelivery(CreateDeliveryRequest request) {
         userServiceClient.getAccount(GetAccountRequest.newBuilder().setUsername(request.getUsername()).build());
 
-        var createDeliveryResponse = deliveryServiceClient.createDelivery(request);
+        var createDeliveryResponse = deliveryServiceClient
+                .createDelivery(deliveryMapper.mapCreateDeliveryRequest(request));
         var createPackageResponse = packageServiceClient.createPackage(
                 CreatePackageRequest.newBuilder().setWeight(request.getWeight()).setHeight(request.getHeight())
                         .setWidth(request.getWidth()).setDelivery(createDeliveryResponse.getDelivery()).build());
@@ -44,6 +50,12 @@ public class SchedulerService {
         });
 
         return response.build();
+    }
+
+    public PickupPackageResponse pickupPackage(PickupPackageRequest request) {
+        return deliveryMapper.mapPickupPackageResponse(
+                deliveryServiceClient.pickupPackage(deliveryMapper.mapPickupPackageRequest(request)));
+
     }
 
 }

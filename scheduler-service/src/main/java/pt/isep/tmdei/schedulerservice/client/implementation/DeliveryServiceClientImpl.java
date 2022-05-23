@@ -4,15 +4,16 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.client.inject.GrpcClient;
+import pt.isep.tmdei.deliverymanagement.CreateDeliveryRequest;
 import pt.isep.tmdei.deliverymanagement.CreateDeliveryResponse;
 import pt.isep.tmdei.deliverymanagement.DeliveryServiceGrpc;
+import pt.isep.tmdei.deliverymanagement.PickupPackageRequest;
+import pt.isep.tmdei.deliverymanagement.PickupPackageResponse;
 import pt.isep.tmdei.deliverymanagement.UpdateDeliveryDroneRequest;
 import pt.isep.tmdei.deliverymanagement.UpdateDeliveryDroneResponse;
 import pt.isep.tmdei.deliverymanagement.UpdateDeliveryStatusRequest;
 import pt.isep.tmdei.deliverymanagement.UpdateDeliveryStatusResponse;
-import pt.isep.tmdei.schedulerservice.CreateDeliveryRequest;
 import pt.isep.tmdei.schedulerservice.client.DeliveryServiceClient;
-import pt.isep.tmdei.schedulerservice.model.mapper.DeliveryMapper;
 
 @Component
 @RequiredArgsConstructor
@@ -21,11 +22,9 @@ public class DeliveryServiceClientImpl implements DeliveryServiceClient {
     @GrpcClient("delivery-management")
     private DeliveryServiceGrpc.DeliveryServiceBlockingStub deliveryManagementStub;
 
-    private final DeliveryMapper deliveryMapper;
-
     @Override
     public CreateDeliveryResponse createDelivery(CreateDeliveryRequest request) {
-        return deliveryManagementStub.createDelivery(deliveryMapper.mapCreateDeliveryRequest(request));
+        return deliveryManagementStub.createDelivery(request);
     }
 
     @Override
@@ -36,6 +35,11 @@ public class DeliveryServiceClientImpl implements DeliveryServiceClient {
     @Override
     public UpdateDeliveryDroneResponse updateDeliveryDrone(UpdateDeliveryDroneRequest request) {
         return deliveryManagementStub.updateDeliveryDrone(request);
+    }
+
+    @Override
+    public PickupPackageResponse pickupPackage(PickupPackageRequest request) {
+        return deliveryManagementStub.pickupPackage(request);
     }
 
 }

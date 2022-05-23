@@ -34,4 +34,13 @@ export class DeliveryController {
       handleError(callback, err);
     }
   }
+
+  async pickupPackage(call, callback) {
+    try {
+      const delivery = await service.readyDelivery(call.request.drone);
+      callback(null, delivery);
+    } catch (err) {
+      handleError(callback, err);
+    }
+  }
 }
