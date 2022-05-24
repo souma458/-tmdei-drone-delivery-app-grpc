@@ -26,7 +26,7 @@ export class DeliveryService {
 
   async getDeliveries(username) {
     const deliveries = await this.deliveryRepository.findByUsername(username);
-    return deliveries.map((d) => new DeliveryResponseDTO(d));
+    return { deliveries: deliveries.map((d) => new DeliveryResponseDTO(d)) };
   }
 
   async createDelivery(delivery) {

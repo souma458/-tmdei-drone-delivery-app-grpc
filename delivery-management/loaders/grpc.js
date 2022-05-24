@@ -24,5 +24,6 @@ export default ({ server, grpc }) => {
     getDelivery: controller.getDelivery,
     cancelDelivery: controller.cancelDelivery,
     confirmDelivery: controller.confirmDelivery,
+    listDeliveries: controller.listDeliveries,
   });
 };

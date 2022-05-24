@@ -98,6 +98,14 @@ message ConfirmDeliveryResponse {
   optional string signature = 4; 
 }
 
+message ListDeliveriesRequest {
+  string username = 1;
+}
+
+message ListDeliveriesResponse {
+  repeated GetDeliveryResponse deliveries = 1;
+}
+
 service DeliveryService {
   rpc createDelivery(CreateDeliveryRequest) returns (CreateDeliveryResponse);
   rpc updateDeliveryStatus(UpdateDeliveryStatusRequest) returns (UpdateDeliveryStatusResponse);
@@ -107,4 +115,5 @@ service DeliveryService {
   rpc getDelivery(GetDeliveryRequest) returns (GetDeliveryResponse);
   rpc cancelDelivery(CancelDeliveryRequest) returns (CancelDeliveryResponse);
   rpc confirmDelivery(ConfirmDeliveryRequest) returns (ConfirmDeliveryResponse);
+  rpc listDeliveries(ListDeliveriesRequest) returns (ListDeliveriesResponse);
 }

@@ -83,4 +83,13 @@ export class DeliveryController {
       handleError(callback, err);
     }
   }
+
+  async listDeliveries(call, callback) {
+    try {
+      const deliveries = await service.getDeliveries(call.request.username);
+      callback(null, deliveries);
+    } catch (err) {
+      handleError(callback, err);
+    }
+  }
 }
