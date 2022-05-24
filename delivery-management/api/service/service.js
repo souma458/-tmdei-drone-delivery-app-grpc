@@ -1,5 +1,6 @@
 import { BadRequestException } from "../exceptions/badRequestException.js";
 import { ConflictException } from "../exceptions/conflictException.js";
+import { ConfirmDeliveryResponseDTO } from "../model/response/confirmDeliveryResponseDTO.js";
 import { ConfirmationRepository } from "../repository/confirmationRepository.js";
 import { DeliveryResponseDTO } from "../model/response/deliveryResponseDTO.js";
 import { DeliveryRepository } from "../repository/deliveryRepository.js";
@@ -124,12 +125,13 @@ export class DeliveryService {
         "Confirmation can only be done for completed deliveries"
       );
     }
-    return await this.confirmationRepository.save({
+    const savedConfirmation = await this.confirmationRepository.save({
       delivery: dbDelivery._id,
-      signature: confirmationInfo.delivery ? confirmationInfo.delivery : null,
+      signature: confirmationInfo.signature ? confirmationInfo.signature : null,
       fingerPrint: confirmationInfo.fingerPrint
         ? confirmationInfo.fingerPrint
         : null,
     });
+    return new ConfirmDeliveryResponseDTO(savedConfirmation);
   }
 }

@@ -70,4 +70,17 @@ export class DeliveryController {
       handleError(callback, err);
     }
   }
+
+  async confirmDelivery(call, callback) {
+    try {
+      const confirmation = await service.createDeliveryConfirmation({
+        delivery: call.request.delivery,
+        fingerPrint: call.request.finger_print,
+        signature: call.request.signature,
+      });
+      callback(null, confirmation);
+    } catch (err) {
+      handleError(callback, err);
+    }
+  }
 }

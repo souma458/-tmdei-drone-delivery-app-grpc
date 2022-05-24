@@ -85,6 +85,19 @@ message CancelDeliveryResponse {
   // empty
 }
 
+message ConfirmDeliveryRequest {
+  string delivery = 1;
+  optional string finger_print = 2;
+  optional string signature = 3;
+}
+
+message ConfirmDeliveryResponse {
+  string confirmation = 1;
+  string delivery = 2;
+  optional string finger_print = 3;
+  optional string signature = 4; 
+}
+
 service DeliveryService {
   rpc createDelivery(CreateDeliveryRequest) returns (CreateDeliveryResponse);
   rpc updateDeliveryStatus(UpdateDeliveryStatusRequest) returns (UpdateDeliveryStatusResponse);
@@ -93,4 +106,5 @@ service DeliveryService {
   rpc completeDelivery(CompleteDeliveryRequest) returns (CompleteDeliveryResponse);
   rpc getDelivery(GetDeliveryRequest) returns (GetDeliveryResponse);
   rpc cancelDelivery(CancelDeliveryRequest) returns (CancelDeliveryResponse);
+  rpc confirmDelivery(ConfirmDeliveryRequest) returns (ConfirmDeliveryResponse);
 }
