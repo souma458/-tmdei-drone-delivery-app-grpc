@@ -8,6 +8,8 @@ import pt.isep.tmdei.schedulerservice.CompleteDeliveryRequest;
 import pt.isep.tmdei.schedulerservice.CompleteDeliveryResponse;
 import pt.isep.tmdei.schedulerservice.CreateDeliveryRequest;
 import pt.isep.tmdei.schedulerservice.CreateDeliveryResponse;
+import pt.isep.tmdei.schedulerservice.GetDeliveryEtaRequest;
+import pt.isep.tmdei.schedulerservice.GetDeliveryEtaResponse;
 import pt.isep.tmdei.schedulerservice.PickupPackageRequest;
 import pt.isep.tmdei.schedulerservice.PickupPackageResponse;
 import pt.isep.tmdei.schedulerservice.SchedulerServiceGrpc;
@@ -40,9 +42,17 @@ public class SchedulerGrpcService extends SchedulerServiceGrpc.SchedulerServiceI
         responseObserver.onCompleted();
     }
 
+    @Override
     public void cancelDelivery(CancelDeliveryRequest request,
             io.grpc.stub.StreamObserver<CancelDeliveryResponse> responseObserver) {
         responseObserver.onNext(schedulerService.cancelDelivery(request));
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void getDeliveryEta(GetDeliveryEtaRequest request,
+            io.grpc.stub.StreamObserver<GetDeliveryEtaResponse> responseObserver) {
+        responseObserver.onNext(schedulerService.getDeliveryEta(request));
         responseObserver.onCompleted();
     }
 
