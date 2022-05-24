@@ -61,4 +61,13 @@ export class DeliveryController {
       handleError(callback, err);
     }
   }
+
+  async cancelDelivery(call, callback) {
+    try {
+      await service.cancelDelivery(call.request.delivery);
+      callback(null, null);
+    } catch (err) {
+      handleError(callback, err);
+    }
+  }
 }

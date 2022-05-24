@@ -3,6 +3,8 @@ package pt.isep.tmdei.schedulerservice.service;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import pt.isep.tmdei.schedulerservice.CancelDeliveryRequest;
+import pt.isep.tmdei.schedulerservice.CancelDeliveryResponse;
 import pt.isep.tmdei.schedulerservice.CompleteDeliveryRequest;
 import pt.isep.tmdei.schedulerservice.CompleteDeliveryResponse;
 import pt.isep.tmdei.schedulerservice.CreateDeliveryRequest;
@@ -58,6 +60,13 @@ public class SchedulerService {
         var delivery = deliveryServiceClient.getDelivery(deliveryMapper.mapGetDeliveryRequest(request.getDelivery()));
         droneServiceClient.idleDrone(droneMapper.mapIdleDroneRequest(Long.parseLong(delivery.getDrone())));
         return CompleteDeliveryResponse.newBuilder().build();
+    }
+
+    public CancelDeliveryResponse cancelDelivery(CancelDeliveryRequest request) {
+        deliveryServiceClient.cancelDelivery(deliveryMapper.mapCancelDeliveryRequest(request));
+        var delivery = deliveryServiceClient.getDelivery(deliveryMapper.mapGetDeliveryRequest(request.getDelivery()));
+        droneServiceClient.idleDrone(droneMapper.mapIdleDroneRequest(Long.parseLong(delivery.getDrone())));
+        return CancelDeliveryResponse.newBuilder().build();
     }
 
 }

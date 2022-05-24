@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
+import pt.isep.tmdei.deliverymanagement.CancelDeliveryRequest;
 import pt.isep.tmdei.deliverymanagement.CompleteDeliveryRequest;
 import pt.isep.tmdei.deliverymanagement.CreateDeliveryRequest;
 import pt.isep.tmdei.deliverymanagement.GetDeliveryRequest;
@@ -67,6 +68,12 @@ public class DeliveryMapper {
 
     public GetDeliveryRequest mapGetDeliveryRequest(String delivery) {
         var request = GetDeliveryRequest.newBuilder().setDelivery(delivery).build();
+        return request;
+    }
+
+    public CancelDeliveryRequest mapCancelDeliveryRequest(
+            pt.isep.tmdei.schedulerservice.CancelDeliveryRequest schedulerRequest) {
+        var request = CancelDeliveryRequest.newBuilder().setDelivery(schedulerRequest.getDelivery()).build();
         return request;
     }
 

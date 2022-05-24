@@ -77,6 +77,14 @@ message GetDeliveryResponse {
   string status = 11;  
 }
 
+message CancelDeliveryRequest {
+  string delivery = 1;
+}
+
+message CancelDeliveryResponse {
+  // empty
+}
+
 service DeliveryService {
   rpc createDelivery(CreateDeliveryRequest) returns (CreateDeliveryResponse);
   rpc updateDeliveryStatus(UpdateDeliveryStatusRequest) returns (UpdateDeliveryStatusResponse);
@@ -84,4 +92,5 @@ service DeliveryService {
   rpc pickupPackage(PickupPackageRequest) returns (PickupPackageResponse);
   rpc completeDelivery(CompleteDeliveryRequest) returns (CompleteDeliveryResponse);
   rpc getDelivery(GetDeliveryRequest) returns (GetDeliveryResponse);
+  rpc cancelDelivery(CancelDeliveryRequest) returns (CancelDeliveryResponse);
 }

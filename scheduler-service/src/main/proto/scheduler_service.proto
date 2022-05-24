@@ -49,8 +49,17 @@ message CompleteDeliveryResponse {
   // empty
 }
 
+message CancelDeliveryRequest {
+  string delivery = 1;
+}
+
+message CancelDeliveryResponse {
+  // empty
+}
+
 service SchedulerService {
   rpc scheduleDelivery(CreateDeliveryRequest) returns (CreateDeliveryResponse);
   rpc pickupPackage(PickupPackageRequest) returns (PickupPackageResponse);
   rpc completeDelivery(CompleteDeliveryRequest) returns (CompleteDeliveryResponse);
+  rpc cancelDelivery(CancelDeliveryRequest) returns (CancelDeliveryResponse);
 }

@@ -1,5 +1,7 @@
 package pt.isep.tmdei.schedulerservice.client;
 
+import pt.isep.tmdei.deliverymanagement.CancelDeliveryRequest;
+import pt.isep.tmdei.deliverymanagement.CancelDeliveryResponse;
 import pt.isep.tmdei.deliverymanagement.CompleteDeliveryRequest;
 import pt.isep.tmdei.deliverymanagement.CompleteDeliveryResponse;
 import pt.isep.tmdei.deliverymanagement.CreateDeliveryRequest;
@@ -25,6 +27,8 @@ public interface DeliveryServiceClient {
 
     CompleteDeliveryResponse completeDelivery(CompleteDeliveryRequest request);
 
-    GetDeliveryResponse getDelivery(GetDeliveryRequest setDelivery);
+    GetDeliveryResponse getDelivery(GetDeliveryRequest request);
+
+    CancelDeliveryResponse cancelDelivery(CancelDeliveryRequest request);
 
 }

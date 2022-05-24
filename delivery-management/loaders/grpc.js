@@ -22,5 +22,6 @@ export default ({ server, grpc }) => {
     pickupPackage: controller.pickupPackage,
     completeDelivery: controller.completeDelivery,
     getDelivery: controller.getDelivery,
+    cancelDelivery: controller.cancelDelivery,
   });
 };

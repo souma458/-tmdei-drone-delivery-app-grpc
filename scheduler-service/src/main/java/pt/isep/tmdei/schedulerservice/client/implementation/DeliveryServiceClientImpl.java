@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.client.inject.GrpcClient;
+import pt.isep.tmdei.deliverymanagement.CancelDeliveryRequest;
+import pt.isep.tmdei.deliverymanagement.CancelDeliveryResponse;
 import pt.isep.tmdei.deliverymanagement.CompleteDeliveryRequest;
 import pt.isep.tmdei.deliverymanagement.CompleteDeliveryResponse;
 import pt.isep.tmdei.deliverymanagement.CreateDeliveryRequest;
@@ -54,6 +56,11 @@ public class DeliveryServiceClientImpl implements DeliveryServiceClient {
     @Override
     public GetDeliveryResponse getDelivery(GetDeliveryRequest request) {
         return deliveryManagementStub.getDelivery(request);
+    }
+
+    @Override
+    public CancelDeliveryResponse cancelDelivery(CancelDeliveryRequest request) {
+        return deliveryManagementStub.cancelDelivery(request);
     }
 
 }
