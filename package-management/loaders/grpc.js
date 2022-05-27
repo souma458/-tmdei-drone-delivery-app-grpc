@@ -15,7 +15,7 @@ export default ({ server, grpc }) => {
   });
   const packageService = grpc.loadPackageDefinition(packageDefinition);
 
-  server.addService(packageService.PackageService.service, {
+  server.addService(packageService.packagemanagement.PackageService.service, {
     createPackage: controller.createPackage,
     createTagForPackage: controller.createTagForPackage,
   });

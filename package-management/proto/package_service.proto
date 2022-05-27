@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
+package packagemanagement;
 
 message CreatePackageRequest {
   int32 weight = 1;
