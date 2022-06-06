@@ -63,6 +63,17 @@ export class DeliveryService {
   async readyDelivery(drone) {
     const delivery =
       await this.deliveryRepository.findOldestReadyToDeliverByDrone(drone);
+    if (!delivery) {
+      // TODO: Fix error case
+      return {
+        delivery: "error",
+        pickup_latitude: "error",
+        pickup_longitude: "error",
+        dropOff_latitude: "error",
+        dropOff_longitude: "error",
+        status: DeliveryStatus.DELIVERY_STATUS_ERROR,
+      };
+    }
     delivery.drone = drone;
     delivery.status = DeliveryStatus.DELIVERY_STATUS_HEADED_TO_DROP_OFF;
     const updatedDelivery = await this.deliveryRepository.update(
@@ -71,8 +82,10 @@ export class DeliveryService {
     );
     return {
       delivery: updatedDelivery._id,
-      pickup: updatedDelivery.pickup,
-      dropOff: updatedDelivery.dropOff,
+      pickup_latitude: updatedDelivery.pickup.latitude,
+      pickup_longitude: updatedDelivery.pickup.longitude,
+      dropOff_latitude: updatedDelivery.dropOff.latitude,
+      dropOff_longitude: updatedDelivery.dropOff.longitude,
       status: updatedDelivery.status,
     };
   }

@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package deliverymanagement;
+
 import "google/protobuf/timestamp.proto";
 
 message CreateDeliveryRequest {
@@ -70,8 +72,8 @@ message GetDeliveryResponse {
   int64 pickup_longitude = 4;
   int64 dropOff_latitude = 5;
   int64 dropOff_longitude = 6;
-  optional string drone = 7;
-  optional string transportation_request = 8;
+  string drone = 7;
+  string transportation_request = 8;
   google.protobuf.Timestamp created = 9;
   string account = 10;
   string status = 11;  
@@ -87,15 +89,15 @@ message CancelDeliveryResponse {
 
 message ConfirmDeliveryRequest {
   string delivery = 1;
-  optional string finger_print = 2;
-  optional string signature = 3;
+  string finger_print = 2;
+  string signature = 3;
 }
 
 message ConfirmDeliveryResponse {
   string confirmation = 1;
   string delivery = 2;
-  optional string finger_print = 3;
-  optional string signature = 4; 
+  string finger_print = 3;
+  string signature = 4; 
 }
 
 message ListDeliveriesRequest {

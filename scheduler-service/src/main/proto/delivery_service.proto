@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package deliverymanagement;
+
 import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = true;
@@ -73,8 +75,8 @@ message GetDeliveryResponse {
   int64 pickup_longitude = 4;
   int64 dropOff_latitude = 5;
   int64 dropOff_longitude = 6;
-  optional string drone = 7;
-  optional string transportation_request = 8;
+  string drone = 7;
+  string transportation_request = 8;
   google.protobuf.Timestamp created = 9;
   string account = 10;
   string status = 11;  

@@ -32,7 +32,7 @@ export class DeliveryRepository {
         status: DeliveryStatus.DELIVERY_STATUS_CREATED,
       })
       .sort({ created: 1 });
-    if (deliveries) {
+    if (deliveries.length > 0) {
       return deliveries[0];
     }
     return null;

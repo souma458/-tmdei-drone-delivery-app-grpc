@@ -15,15 +15,18 @@ export default ({ server, grpc }) => {
   });
   const deliveryServiceProto = grpc.loadPackageDefinition(packageDefinition);
 
-  server.addService(deliveryServiceProto.DeliveryService.service, {
-    createDelivery: controller.createDelivery,
-    updateDeliveryStatus: controller.updateDeliveryStatus,
-    updateDeliveryDrone: controller.updateDeliveryDrone,
-    pickupPackage: controller.pickupPackage,
-    completeDelivery: controller.completeDelivery,
-    getDelivery: controller.getDelivery,
-    cancelDelivery: controller.cancelDelivery,
-    confirmDelivery: controller.confirmDelivery,
-    listDeliveries: controller.listDeliveries,
-  });
+  server.addService(
+    deliveryServiceProto.deliverymanagement.DeliveryService.service,
+    {
+      createDelivery: controller.createDelivery,
+      updateDeliveryStatus: controller.updateDeliveryStatus,
+      updateDeliveryDrone: controller.updateDeliveryDrone,
+      pickupPackage: controller.pickupPackage,
+      completeDelivery: controller.completeDelivery,
+      getDelivery: controller.getDelivery,
+      cancelDelivery: controller.cancelDelivery,
+      confirmDelivery: controller.confirmDelivery,
+      listDeliveries: controller.listDeliveries,
+    }
+  );
 };

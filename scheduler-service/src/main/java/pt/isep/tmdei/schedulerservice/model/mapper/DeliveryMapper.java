@@ -54,6 +54,7 @@ public class DeliveryMapper {
             pt.isep.tmdei.deliverymanagement.PickupPackageResponse deliveryResponse) {
         var response = PickupPackageResponse.newBuilder().setDelivery(deliveryResponse.getDelivery())
                 .setPickupLatitude(deliveryResponse.getPickupLatitude())
+                .setPickupLongitude(deliveryResponse.getPickupLongitude())
                 .setDropOffLatitude(deliveryResponse.getDropOffLatitude())
                 .setDropOffLongitude(deliveryResponse.getDropOffLongitude()).setStatus(deliveryResponse.getStatus())
                 .build();
