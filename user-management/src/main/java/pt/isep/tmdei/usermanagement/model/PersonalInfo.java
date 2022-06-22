@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 public class PersonalInfo {
 
     @Id
-    @Column
-    private Long id;
+    @Column(name = "id")
+    private String email;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -27,9 +27,6 @@ public class PersonalInfo {
 
     @Column(name = "birthday", nullable = false)
     private Date birthday;
-
-    @Column(name = "email", nullable = false)
-    private String email;
 
     @Column(name = "phoneNumber", nullable = false)
     private String phoneNumber;

@@ -28,7 +28,7 @@ public class DroneService {
         droneRepository.save(drones.get(0));
         var model = modelRepository.findById(drones.get(0).getModel()).get();
 
-        var response = BookDroneResponse.newBuilder().setDrone(drones.get(0).getId()).setModel(model.getId()).build();
+        var response = BookDroneResponse.newBuilder().setDrone(drones.get(0).getId()).setModel(model.getName()).build();
 
         return response;
     }

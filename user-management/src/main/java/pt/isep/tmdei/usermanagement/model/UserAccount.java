@@ -24,8 +24,8 @@ public class UserAccount {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "personal_info_id", nullable = false)
-    private Long personal_info;
+    @Column(name = "email", nullable = false)
+    private String email;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)

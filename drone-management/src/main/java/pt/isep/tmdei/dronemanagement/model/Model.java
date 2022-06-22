@@ -15,7 +15,7 @@ public class Model {
 
     @Id
     @Column(name = "id")
-    private String id;
+    private String name;
 
     @Column(name = "weight", nullable = false)
     private int weight;
